@@ -17,7 +17,11 @@ public interface IServiceArticle {
 	public void deleteArticleById(long id);
 
 	public List<Article> findAllArticles();
-	
+
 	boolean isArticleExist(Article article);
-	
+
+	public List<Article> articlesParMotCle(String mc);
+
+	public List<Article> articlesParModel(Long idMod);
+
 }

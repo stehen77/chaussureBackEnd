@@ -23,17 +23,17 @@ public class ArticleDAOImpl implements IArticleDao {
 	@Override
 	public Article findByName(String name) {
 
-		/*Article article = new Article();
-		String hql = "select a from Article a where name = ?";
-
-		try {
-			Query query = em.createQuery(hql);
-			article = (Article) query.setParameter(0, name);
-
-		} catch (Exception e) {
-
-		}
-		return article;*/
+		/*
+		 * Article article = new Article(); String hql =
+		 * "select a from Article a where name = ?";
+		 * 
+		 * try { Query query = em.createQuery(hql); article = (Article)
+		 * query.setParameter(0, name);
+		 * 
+		 * } catch (Exception e) {
+		 * 
+		 * } return article;
+		 */
 		return null;
 	}
 
@@ -81,8 +81,22 @@ public class ArticleDAOImpl implements IArticleDao {
 
 	@Override
 	public boolean isArticleExist(Article article) {
-		
+
 		return findById(article.getId_article()) != null;
+	}
+
+	@Override
+	public List<Article> articlesParMotCle(String mc) {
+		Query req = em.createQuery("select a from Article a where a.prix_unitaire like :x");
+		req.setParameter("x", "%" + mc + "%");
+		return req.getResultList();
+	}
+
+	@Override
+	public List<Article> articlesParModel(Long idMod) {
+		Query req = em.createQuery("select a from Article a where a.model.id_model=:x ");
+		req.setParameter("x", idMod);
+		return req.getResultList();
 	}
 
 }

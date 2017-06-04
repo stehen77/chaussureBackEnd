@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.fitec.boutique.entities.Article;
@@ -44,4 +46,13 @@ public class ArticleController {
 			}
 			return new ResponseEntity<Article>(article, HttpStatus.OK);
 		}
+		
+		/*@RequestMapping(value = "/article/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
+		public Article articlesParCat(@RequestParam Long idMod) {
+			 Article article = (Article) serviceArticle.articlesParModel(idMod);
+
+			
+			return new Article();
+
+		}*/
 }

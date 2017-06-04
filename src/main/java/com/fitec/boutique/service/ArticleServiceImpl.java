@@ -67,4 +67,16 @@ public class ArticleServiceImpl implements IServiceArticle{
 		this.daoArticle = daoArticle;
 	}
 
+	@Override
+	public List<Article> articlesParMotCle(String mc) {
+		
+		return daoArticle.articlesParMotCle(mc);
+	}
+
+	@Override
+	public List<Article> articlesParModel(Long idMod) {
+		
+		return daoArticle.articlesParModel(idMod);
+	}
+
 }

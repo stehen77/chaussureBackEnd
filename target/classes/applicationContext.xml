@@ -79,6 +79,7 @@
 			authentication-failure-url="/login" />
 		<s:logout logout-success-url="/login" />
 	</s:http>
+	
 	<s:authentication-manager>
 		<s:authentication-provider>
 			<s:password-encoder hash="md5"></s:password-encoder>
