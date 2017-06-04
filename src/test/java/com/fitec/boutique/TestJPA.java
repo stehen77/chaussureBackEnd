@@ -10,9 +10,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.fitec.boutique.entities.Admin;
 import com.fitec.boutique.entities.Article;
+import com.fitec.boutique.entities.Client;
 import com.fitec.boutique.entities.Model;
 import com.fitec.boutique.service.IServiceAdmin;
-import com.fitec.boutique.service.IServiceArticle;
+
+import com.fitec.boutique.service.IServiceClient;
 
 public class TestJPA {
 
@@ -46,7 +48,7 @@ public class TestJPA {
 	 * assertTrue(e.getMessage(),false); } }
 	 */
 
-	@Test
+	/*@Test
 	public void test1() {
 
 		try {
@@ -60,6 +62,25 @@ public class TestJPA {
 
 			List<Article> article2 = service.findAllArticles();
 			assertTrue(article1.size() + 2 == article2.size());
+		} catch (Exception e) {
+			assertTrue(e.getMessage(), false);
+		}
+	}*/
+	
+	@Test
+	public void test1() {
+
+		try {
+
+			IServiceClient serviceClient = (IServiceClient) context.getBean("serviceClient");
+
+			List<Client> client1 = serviceClient.findAllClients();
+			serviceClient.saveClient(new Client("aa", "bbb", "ee", "yyy", "yyy"));
+			
+			
+
+			List<Client> client2 = serviceClient.findAllClients();
+			assertTrue(client1.size() + 2 == client2.size());
 		} catch (Exception e) {
 			assertTrue(e.getMessage(), false);
 		}

@@ -82,7 +82,7 @@ public class ArticleDAOImpl implements IArticleDao {
 	@Override
 	public boolean isArticleExist(Article article) {
 		
-		return findById(article.getId_article())!=null;
+		return findById(article.getId_article()) != null;
 	}
 
 }

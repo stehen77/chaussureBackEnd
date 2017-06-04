@@ -25,7 +25,7 @@ public class AdminDAOImpl implements IDaoAdmin{
 	public Admin findByName(String name) {
 		
 		Admin admin = new Admin();
-		String hql = "select a from Admin a where name = ?";
+		String hql = "select a from Admin a where nom_admin = ?";
 		
 		try {
 			Query query = em.createQuery(hql);

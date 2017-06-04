@@ -45,9 +45,9 @@ public class Model implements Serializable{
 	@OneToMany(mappedBy = "model")
 	private Collection<Photo> photos;
 	
-	/*
-	@ManyToMany(mappedBy="modeles")
-	private Collection<Categorie> categories;*/
+	
+	@ManyToMany
+	private Collection<Categorie> categories;
 
 	public Model() {
 		super();

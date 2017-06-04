@@ -9,6 +9,7 @@ package com.fitec.boutique.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,12 +27,14 @@ public class Categorie implements Serializable {
 
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="id_categorie")
 	private long id_categorie;
 
+	@Column(name="nom_cat")
 	private String nom_cat;
 	
-	/*@ManyToMany
-	private  Collection<Model> modeles;*/
+	@ManyToMany(mappedBy = "categories")
+	private  Collection<Model> model;
 
 	public Categorie() {
 		super();

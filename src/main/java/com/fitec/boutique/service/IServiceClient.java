@@ -1,10 +1,10 @@
-package com.fitec.boutique.dao;
+package com.fitec.boutique.service;
 
 import java.util.List;
 
 import com.fitec.boutique.entities.Client;
 
-public interface IDAOClient {
+public interface IServiceClient {
 
 	
 	public Client findById(long id);

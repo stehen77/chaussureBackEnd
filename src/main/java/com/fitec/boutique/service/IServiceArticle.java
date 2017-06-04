@@ -6,7 +6,6 @@ import com.fitec.boutique.entities.Article;
 
 public interface IServiceArticle {
 
-	
 	public Article findById(long id);
 
 	public Article findByName(String name);
@@ -20,4 +19,5 @@ public interface IServiceArticle {
 	public List<Article> findAllArticles();
 	
 	boolean isArticleExist(Article article);
+	
 }

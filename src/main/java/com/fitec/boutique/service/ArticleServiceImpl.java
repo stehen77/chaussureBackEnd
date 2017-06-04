@@ -5,24 +5,15 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.fitec.boutique.dao.IArticleDao;
-import com.fitec.boutique.dao.IDaoAdmin;
 import com.fitec.boutique.entities.Article;
 
 @Transactional
-public class ArticleServiceImpl implements IArticleDao{
-
+public class ArticleServiceImpl implements IServiceArticle{
 	
 	private IArticleDao daoArticle;
-	
-	
-	
-	public IArticleDao getDaoArticle() {
-		return daoArticle;
-	}
 
-	public void setDaoArticle(IArticleDao daoArticle) {
-		this.daoArticle = daoArticle;
-	}
+	
+	
 
 	@Override
 	public Article findById(long id) {
@@ -64,6 +55,16 @@ public class ArticleServiceImpl implements IArticleDao{
 	public boolean isArticleExist(Article article) {
 		
 		return daoArticle.isArticleExist(article);
+	}
+	
+	
+	
+	public IArticleDao getDaoArticle() {
+		return daoArticle;
+	}
+
+	public void setDaoArticle(IArticleDao daoArticle) {
+		this.daoArticle = daoArticle;
 	}
 
 }
