@@ -2,7 +2,9 @@ package com.fitec.boutique;
 
 import static org.junit.Assert.*;
 
+import java.util.HashSet;
 import java.util.List;
+
 
 import org.junit.Before;
 import org.junit.Test;
@@ -14,7 +16,7 @@ import com.fitec.boutique.entities.Categorie;
 import com.fitec.boutique.entities.Client;
 import com.fitec.boutique.entities.Model;
 import com.fitec.boutique.service.IServiceAdmin;
-
+import com.fitec.boutique.service.IServiceCategorie;
 import com.fitec.boutique.service.IServiceClient;
 import com.fitec.boutique.service.IServiceModel;
 
@@ -28,46 +30,52 @@ public class TestJPA {
 
 	}
 
-	/*
-	 * @Test public void test1() {
-	 * 
-	 * try {
-	 * 
-	 * 
-	 * 
-	 * IServiceAdmin service = (IServiceAdmin) context.getBean("service");
-	 * 
-	 * List<Admin> admin1 = service.findAllAdmins(); service.saveAdmin(new
-	 * Admin("nom_admin", "prenom_admin", "admin@admin0fr"));
-	 * service.saveAdmin(new Admin("nom_admin1", "prenom_admin1",
-	 * "admin1@admin.fr")); service.saveAdmin(new Admin("nom_admin2",
-	 * "prenom_admin2", "admin2@admin.fr"));
-	 * 
-	 * 
-	 * 
-	 * List<Admin> admin2 = service.findAllAdmins();
-	 * assertTrue(admin1.size()+2==admin2.size()); } catch (Exception e) {
-	 * assertTrue(e.getMessage(),false); } }
-	 */
+	
 
-	/*@Test
-	public void test1() {
-
+	@Test
+	public void test2() {
+		
 		try {
-
-			IServiceArticle service = (IServiceArticle) context.getBean("service");
-
-			List<Article> article1 = service.findAllArticles();
-			service.saveArticle(new Article(2.5, 52, 10, (new Model("aaa", "hhhhhhhh", "yh"))));
+			IServiceModel serviceModel = (IServiceModel) context.getBean("serviceModel");
+			IServiceCategorie serviceCategorie = (IServiceCategorie) context.getBean("serviceCategorie");
 			
+			/* // enrigestrer le couple de Model et Categorie
+	        Model model1 = new Model("Model A", "rr", "eee");
+	        Model model2 = new Model("Model B", "rr", "rr");
+	        Model model3 = new Model("Model C", "rff", "ffr");
+	       
+	        
+	        
+	        Categorie cat1 = new Categorie("Cat A");
+	        Categorie cat2 = new Categorie("Cat B");
 			
-
-			List<Article> article2 = service.findAllArticles();
-			assertTrue(article1.size() + 2 == article2.size());
+	        (model1.getCategories()).add(cat1);
+	        (model1.getCategories()).add(cat2);
+	        
+	        (model2.getCategories()).add(cat1);
+	        (model2.getCategories()).add(cat2);
+	        
+	        (model3.getCategories()).add(cat1);
+	        (model3.getCategories()).add(cat2);
+	        
+	        
+	        serviceModel.saveModel(model1);
+	        serviceModel.saveModel(model2);
+	        serviceModel.saveModel(model3);*/
+	        
+	        // fetch all categorie
+	        for(Categorie categorie : serviceCategorie.findAllCategories()) {
+	           
+	           System.out.println(categorie.getModels());
+	        }
+	        
+	        
+			
 		} catch (Exception e) {
-			assertTrue(e.getMessage(), false);
+			
 		}
-	}*/
+	}
+	
 	
 	@Test
 	public void test1() {
@@ -75,6 +83,14 @@ public class TestJPA {
 		try {
 
 			IServiceModel serviceModel = (IServiceModel) context.getBean("serviceModel");
+			IServiceCategorie serviceCategorie = (IServiceCategorie) context.getBean("serviceCategorie");
+			
+			 for(Model model : serviceModel.findAllModels()) {
+		           
+		           System.out.println(model.getCategories());
+		        }
+			
+			
 /*
 			Categorie categorie1 = new Categorie();
 			categorie1.setNom_cat("Homme1");
@@ -95,9 +111,9 @@ public class TestJPA {
 			serviceModel.saveModel(model1);
 			serviceModel.saveModel(model2);*/
 			
-			List<Model> model3= serviceModel.findAllModels();
+			//List<Model> model3= serviceModel.findAllModels();
 			
-			System.out.println(model3);
+		//	System.out.println(model3);
 			
 		} catch (Exception e) {
 			assertTrue(e.getMessage(), false);

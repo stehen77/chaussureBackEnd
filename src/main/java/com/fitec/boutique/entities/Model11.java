@@ -21,17 +21,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
 @Table(name="model")
-public class Model implements Serializable{
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })//very imp a verif
+public class Model11 implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_model")
 	private long id_model;
 
@@ -45,10 +44,13 @@ public class Model implements Serializable{
 	private String couleur;
 	
 	@OneToMany(mappedBy = "model")
+	@JsonIgnore
 	private Collection<Article> articles;
 	
 	@OneToMany(mappedBy = "model")
+	@JsonIgnore
 	private Collection<Photo> photos;
+	
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "model_categorie", joinColumns = @JoinColumn(name = "id_model"), inverseJoinColumns = @JoinColumn(name = "id_categorie"))
@@ -57,22 +59,23 @@ public class Model implements Serializable{
 	
 	
 	
-	public Model() {
+	public Model11() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Model(String nom_model, String description, String couleur) {
+	public Model11(String nom_model, String description, String couleur) {
 		super();
 		this.nom_model = nom_model;
 		this.description = description;
 		this.couleur = couleur;
 	}
-
 	
-	public Model(String nom_model, Collection<Categorie> categories) {
+	public Model11(String nom_model, String description, String couleur, Collection<Categorie> categories) {
 		super();
 		this.nom_model = nom_model;
+		this.description = description;
+		this.couleur = couleur;
 		this.categories = categories;
 	}
 
@@ -113,18 +116,8 @@ public class Model implements Serializable{
 	@Override
 	public String toString() {
 		return "Model [id_model=" + id_model + ", nom_model=" + nom_model + ", description=" + description
-				+ ", couleur=" + couleur  + ", categories="
+				+ ", couleur=" + couleur + ", articles=" + articles + ", photos=" + photos + ", categories="
 				+ categories + "]";
-	}
-
-	
-
-	public Collection<Categorie> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(Collection<Categorie> categories) {
-		this.categories = categories;
 	}
 
 	public Collection<Article> getArticles() {
@@ -141,6 +134,14 @@ public class Model implements Serializable{
 
 	public void setPhotos(Collection<Photo> photos) {
 		this.photos = photos;
+	}
+
+	public Collection<Categorie> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Collection<Categorie> categories) {
+		this.categories = categories;
 	}
 
 	
