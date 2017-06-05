@@ -9,6 +9,7 @@ package com.fitec.boutique.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -18,6 +19,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -33,9 +35,14 @@ public class Categorie implements Serializable {
 	@Column(name="nom_cat")
 	private String nom_cat;
 	
-	@ManyToMany(mappedBy = "categories")
-	private  Collection<Model> model;
+	
 
+	@ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
+	@JsonIgnore
+	private Collection<Model> models;
+	
+	
+	
 	public Categorie() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -67,4 +74,15 @@ public class Categorie implements Serializable {
 		return "Categorie [id_categorie=" + id_categorie + ", nom_cat=" + nom_cat + "]";
 	}
 
+	public Collection<Model> getModels() {
+		return models;
+	}
+
+	public void setModels(Collection<Model> models) {
+		this.models = models;
+	}
+
+	
+
+	
 }

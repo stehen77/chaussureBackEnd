@@ -45,8 +45,8 @@ public class Client implements Serializable {
 	@Column(name="mdp")
 	private String mdp;
 
-	/*@OneToMany(mappedBy = "client")
-	private Collection<Commande> commandes;*/
+	@OneToMany(mappedBy = "client")
+	private Collection<Commande> commandes;
 	
 	public Client() {
 		super();
@@ -116,13 +116,6 @@ public class Client implements Serializable {
 				+ ", adresse=" + adresse + ", mdp=" + mdp + "]";
 	}
 
-	/*public Collection<Commande> getCommandes() {
-		return commandes;
-	}
-
-	public void setCommandes(Collection<Commande> commandes) {
-		this.commandes = commandes;
-	}*/
 	
 	
 

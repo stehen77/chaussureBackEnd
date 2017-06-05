@@ -8,16 +8,19 @@ package com.fitec.boutique.entities;
 import java.io.Serializable;
 import java.util.*;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -40,15 +43,21 @@ public class Model implements Serializable{
 	private String couleur;
 	
 	@OneToMany(mappedBy = "model")
+	@JsonIgnore
 	private Collection<Article> articles;
 	
 	@OneToMany(mappedBy = "model")
+	@JsonIgnore
 	private Collection<Photo> photos;
 	
-	
-	@ManyToMany
-	private Collection<Categorie> categories;
 
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "model_categorie", joinColumns = @JoinColumn(name = "id_model"), inverseJoinColumns = @JoinColumn(name = "id_categorie"))
+	@JsonIgnore
+	private Collection<Categorie> categories;
+	
+	
+	
 	public Model() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -93,10 +102,45 @@ public class Model implements Serializable{
 		this.couleur = couleur;
 	}
 
+	
+
 	@Override
 	public String toString() {
 		return "Model [id_model=" + id_model + ", nom_model=" + nom_model + ", description=" + description
-				+ ", couleur=" + couleur + "]";
+				+ ", couleur=" + couleur + ", articles=" + articles + ", photos=" + photos + ", categories="
+				+ categories + "]";
 	}
 
+	public Collection<Article> getArticles() {
+		return articles;
+	}
+
+	public void setArticles(Collection<Article> articles) {
+		this.articles = articles;
+	}
+
+	public Collection<Photo> getPhotos() {
+		return photos;
+	}
+
+	public void setPhotos(Collection<Photo> photos) {
+		this.photos = photos;
+	}
+
+	public Collection<Categorie> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Collection<Categorie> categories) {
+		this.categories = categories;
+	}
+
+	
+
+	
+
+	
+
+	
+	
 }

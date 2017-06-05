@@ -30,6 +30,8 @@
 				<td>${a.prix_unitaire }</td>
 				<td>${a.quantite_stock }</td>
 				<td>${a.model.nom_model }</td>
+				<td>${a.model.description }</td>
+				
 			</tr>
 
 		</c:forEach>
@@ -37,6 +39,20 @@
 	<c:forEach items="${categories }" var="m">
 			<tr>
 				<td>${m.id_categorie }</td>
+				<td>${m.nom_cat }</td>
+				
+				
+				
+			</tr>
+
+		</c:forEach>
+		<br>
+		<c:forEach items="${models }" var="l">
+			<tr>
+				<td>${l.id_model }</td>
+				<td>${l.nom_model }</td>
+				
+			
 				
 				
 			</tr>

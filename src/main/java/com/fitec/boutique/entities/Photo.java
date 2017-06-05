@@ -79,4 +79,13 @@ public class Photo implements Serializable{
 		return "Photo [id_photo=" + id_photo + ", nom_photo=" + nom_photo + ", url=" + url + "]";
 	}
 
+	public Model getModel() {
+		return model;
+	}
+
+	public void setModel(Model model) {
+		this.model = model;
+	}
+
+	
 }

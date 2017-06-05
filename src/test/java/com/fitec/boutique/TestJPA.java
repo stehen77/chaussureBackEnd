@@ -10,11 +10,13 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import com.fitec.boutique.entities.Admin;
 import com.fitec.boutique.entities.Article;
+import com.fitec.boutique.entities.Categorie;
 import com.fitec.boutique.entities.Client;
 import com.fitec.boutique.entities.Model;
 import com.fitec.boutique.service.IServiceAdmin;
 
 import com.fitec.boutique.service.IServiceClient;
+import com.fitec.boutique.service.IServiceModel;
 
 public class TestJPA {
 
@@ -72,15 +74,31 @@ public class TestJPA {
 
 		try {
 
-			IServiceClient serviceClient = (IServiceClient) context.getBean("serviceClient");
+			IServiceModel serviceModel = (IServiceModel) context.getBean("serviceModel");
+/*
+			Categorie categorie1 = new Categorie();
+			categorie1.setNom_cat("Homme1");
 
-			List<Client> client1 = serviceClient.findAllClients();
-			serviceClient.saveClient(new Client("aa", "bbb", "ee", "yyy", "yyy"));
+			Categorie categorie2 = new Categorie();
+			categorie2.setNom_cat("Femme1");
 			
 			
+			Model model1 = new Model();
+			model1.setNom_model("Chaussure Adidas");
+			(model1.getCategories()).add(categorie2);
+			
 
-			List<Client> client2 = serviceClient.findAllClients();
-			assertTrue(client1.size() + 2 == client2.size());
+			Model model2 = new Model();
+			model2.setNom_model("Chaussure assisc");
+			(model2.getCategories()).add(categorie1);
+			
+			serviceModel.saveModel(model1);
+			serviceModel.saveModel(model2);*/
+			
+			List<Model> model3= serviceModel.findAllModels();
+			
+			System.out.println(model3);
+			
 		} catch (Exception e) {
 			assertTrue(e.getMessage(), false);
 		}
