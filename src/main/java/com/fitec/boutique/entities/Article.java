@@ -39,7 +39,7 @@ public class Article implements Serializable {
 	
 	@ManyToOne
 	@JoinColumn(name="id_model")
-	@JsonIgnore
+	//@JsonIgnore
 	private Model model;
 	
 	@OneToMany
