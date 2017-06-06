@@ -23,7 +23,7 @@ public class CategorieController {
 	private IServiceCategorie serviceCategorie;
 	
 	
-	// selectionner tous les clients
+		// selectionner tous les clients
 	
 		@RequestMapping(value = "/categories", method = RequestMethod.GET)
 		public ResponseEntity<List<Categorie>> listAllCategories() {
@@ -34,7 +34,7 @@ public class CategorieController {
 			return new ResponseEntity<List<Categorie>>(categories, HttpStatus.OK);
 		}
 		
-		/// * selectionner un Client par Id
+		// * selectionner un Client par Id
 		 
 		@RequestMapping(value = "/categorie/{id}", method = RequestMethod.GET, produces = MediaType.APPLICATION_JSON_VALUE)
 		public ResponseEntity<Categorie> getCategorie(@PathVariable("id") int id) {

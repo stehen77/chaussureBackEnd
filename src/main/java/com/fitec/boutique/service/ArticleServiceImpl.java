@@ -11,8 +11,6 @@ import com.fitec.boutique.entities.Article;
 public class ArticleServiceImpl implements IServiceArticle{
 	
 	private IArticleDao daoArticle;
-
-	
 	
 
 	@Override

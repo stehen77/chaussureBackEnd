@@ -36,6 +36,10 @@ public class Ligne_de_commande {
 	@JoinColumn(name="id_article")
 	private Article article;
 	
+	@ManyToOne
+	@JoinColumn(name="id_commande")
+	private Commande commande;
+	
 	public Ligne_de_commande() {
 		super();
 		// TODO Auto-generated constructor stub
@@ -73,6 +77,14 @@ public class Ligne_de_commande {
 
 	public void setArticle(Article article) {
 		this.article = article;
+	}
+
+	public Commande getCommande() {
+		return commande;
+	}
+
+	public void setCommande(Commande commande) {
+		this.commande = commande;
 	}
 
 	

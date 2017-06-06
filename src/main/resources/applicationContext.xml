@@ -16,9 +16,9 @@
 	<bean id="datasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/chaussures"></property>
-		<property name="username" value="java1"></property>
-		<property name="password" value="java1"></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/chaussure"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 
 	<bean id="persistenceUnitManager"
@@ -42,12 +42,12 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:annotation-config></context:annotation-config>
-	<context:component-scan base-package="com.fitec.boutique"
+	<!-- <context:component-scan base-package="com.fitec.boutique"
 		use-default-filters="false">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 			
-	</context:component-scan>
+	</context:component-scan> -->
 	
 	
 
@@ -80,6 +80,14 @@
 
 		<property name="daoCategorie" ref="daoCategorie"></property>
 	</bean>
+	
+	<bean id="daoCommande" class="com.fitec.boutique.dao.CommandeDAOImpl"></bean>
+	<bean id="serviceCommande" class="com.fitec.boutique.service.CommandeServiceImpl">
+
+		<property name="daoCommande" ref="daoCommande"></property>
+	</bean>
+	
+	
 
 	<!-- <s:http> <s:intercept-url pattern="/adminProd/**" access="ROLE_ADMIN_PROD" 
 		/> <s:intercept-url pattern="/adminCat/**" access="ROLE_ADMIN_CAT" /> <s:form-login 

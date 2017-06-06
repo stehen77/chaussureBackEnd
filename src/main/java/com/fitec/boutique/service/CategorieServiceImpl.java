@@ -43,7 +43,7 @@ public class CategorieServiceImpl implements IServiceCategorie{
 		
 	}
 
-	// essayer d ecrire
+	/* Old version too long
 	@Override
 	public Categorie findById(long id) {
 		List<Categorie> listeCat = daoCategorie.findAllCategories();
@@ -54,6 +54,15 @@ public class CategorieServiceImpl implements IServiceCategorie{
 				catSelected = cat;
 			}
 		}
+		return catSelected;
+	}
+	*/
+	
+	// Refactoring du code par Alexis
+	@Override
+	public Categorie findById(long id) {
+		Categorie catSelected = daoCategorie.findById(id);
+		catSelected.getModels().size(); // evite lazyloading
 		return catSelected;
 	}
 	

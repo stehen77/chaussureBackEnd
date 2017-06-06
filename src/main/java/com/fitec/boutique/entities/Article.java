@@ -15,8 +15,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -32,14 +34,18 @@ public class Article implements Serializable {
 	@Column(name="taille")
 	private double taille;
 
-	
-
 	@Column(name="quantite_stock")
 	private int quantite_stock;
 	
 	@ManyToOne
 	@JoinColumn(name="id_model")
+	@JsonIgnore
 	private Model model;
+	
+	@OneToMany
+	@JoinColumn(name="id_ligne_cmde")
+	@JsonIgnore
+	private Collection<Ligne_de_commande> ligne_de_commandes;
 
 	/*
 	 * Constructeurs
@@ -108,6 +114,15 @@ public class Article implements Serializable {
 				+ ", quantite_stock=" + quantite_stock + ", model=" + model + "]";
 	}
 
+	public Collection<Ligne_de_commande> getLigne_de_commandes() {
+		return ligne_de_commandes;
+	}
+
+	public void setLigne_de_commandes(Collection<Ligne_de_commande> ligne_de_commandes) {
+		this.ligne_de_commandes = ligne_de_commandes;
+	}
+
+	
 	
 
 	/*

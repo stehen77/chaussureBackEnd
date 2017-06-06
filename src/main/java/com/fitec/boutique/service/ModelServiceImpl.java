@@ -15,8 +15,9 @@ public class ModelServiceImpl implements IServiceModel{
 	
 	@Override
 	public Model findById(long id) {
+		Model m = daoModel.findById(id);
 		
-		return daoModel.findById(id);
+		return m;
 	}
 
 	@Override
