@@ -85,18 +85,19 @@ public class ArticleDAOImpl implements IArticleDao {
 		return findById(article.getId_article()) != null;
 	}
 
-	@Override
-	public List<Article> articlesParMotCle(String mc) {
-		Query req = em.createQuery("select a from Article a where a.prix_unitaire like :x");
-		req.setParameter("x", "%" + mc + "%");
-		return req.getResultList();
-	}
+	
 
 	@Override
 	public List<Article> articlesParModel(Long idMod) {
 		Query req = em.createQuery("select a from Article a where a.model.id_model=:x ");
 		req.setParameter("x", idMod);
 		return req.getResultList();
+	}
+
+	@Override
+	public List<Article> articlesParMotCle(String mc) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 }

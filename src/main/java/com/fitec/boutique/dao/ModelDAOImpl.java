@@ -6,6 +6,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
+import com.fitec.boutique.entities.Article;
 import com.fitec.boutique.entities.Model;
 
 public class ModelDAOImpl implements IDAOModel {
@@ -83,5 +84,12 @@ public class ModelDAOImpl implements IDAOModel {
 	public boolean isModelExist(Model model) {
 		return findById(model.getId_model()) != null;
 	}
+	
+	/*@Override
+	public List<Article> articlesParMotCle(String mc) {
+		Query req = em.createQuery("select a from Article a where a.prix_unitaire like :x");
+		req.setParameter("x", "%" + mc + "%");
+		return req.getResultList();
+	}*/
 
 }

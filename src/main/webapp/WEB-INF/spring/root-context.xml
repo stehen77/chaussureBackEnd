@@ -12,9 +12,9 @@
 	 <bean id="datasource"
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
-		<property name="url" value="jdbc:mysql://localhost:3306/chaussure"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+		<property name="url" value="jdbc:mysql://localhost:3306/chaussures"></property>
+		<property name="username" value="java1"></property>
+		<property name="password" value="java1"></property>
 	</bean>
 
 	<bean id="persistenceUnitManager"

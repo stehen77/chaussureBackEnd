@@ -19,18 +19,20 @@
 	<table class="tab1">
 		<tr>
 			<th>ID</th>
-			<th>Prix</th>
+			<th>Taille</th>
 			<th>Quantité</th>
 			<th>Model</th>
+			<th>Prix</th>
 			
 		</tr>
 		<c:forEach items="${articles }" var="a">
 			<tr>
 				<td>${a.id_article }</td>
-				<td>${a.prix_unitaire }</td>
+				<td>${a.taille }</td>
 				<td>${a.quantite_stock }</td>
 				<td>${a.model.nom_model }</td>
 				<td>${a.model.description }</td>
+				<td>${a.model.prix_unitaire }</td>
 				
 			</tr>
 
@@ -40,6 +42,7 @@
 			<tr>
 				<td>${m.id_categorie }</td>
 				<td>${m.nom_cat }</td>
+				<%--  <td>${m.model.nom_model }</td>  --%>
 				
 				
 				
@@ -51,6 +54,8 @@
 			<tr>
 				<td>${l.id_model }</td>
 				<td>${l.nom_model }</td>
+				
+				
 				
 			
 				

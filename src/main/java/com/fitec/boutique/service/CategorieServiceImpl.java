@@ -17,11 +17,7 @@ public class CategorieServiceImpl implements IServiceCategorie{
 	
 	
 
-	@Override
-	public Categorie findById(long id) {
-		
-		return daoCategorie.findById(id);
-	}
+	
 
 	@Override
 	public Categorie findByName(String name) {
@@ -47,12 +43,36 @@ public class CategorieServiceImpl implements IServiceCategorie{
 		
 	}
 
+	// essayer d ecrire
+	@Override
+	public Categorie findById(long id) {
+		List<Categorie> listeCat = daoCategorie.findAllCategories();
+		Categorie catSelected = null;
+		for (Categorie cat : listeCat){
+			if(cat.getId_categorie() == id){
+				cat.getModels().size();
+				catSelected = cat;
+			}
+		}
+		return catSelected;
+	}
+	
 	@Override
 	public List<Categorie> findAllCategories() {
-		
-		return daoCategorie.findAllCategories();
+		List<Categorie> listeCat = daoCategorie.findAllCategories();
+		for (Categorie cat : listeCat){
+			 cat.getModels().size(); //appeler .size() sur une collection "lazy" dans 
+			                          //une méthode @Transactional remonte tout de suite val en memoire
+			                         //--> pas de lazy exception coté web
+		}
+		return listeCat;
 	}
 
+	/*@Override
+	public List<Categorie> findAllCategories() {
+		return daoCategorie.findAllCategories();
+	}*/
+	
 	@Override
 	public boolean isCategorieExist(Categorie categorie) {
 		

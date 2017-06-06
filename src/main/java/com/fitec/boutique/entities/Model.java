@@ -21,17 +21,16 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-
-
-
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 @Entity
 @Table(name="model")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })//very imp a verif
 public class Model implements Serializable{
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="id_model")
 	private long id_model;
 
@@ -40,15 +39,21 @@ public class Model implements Serializable{
 
 	@Column(name="description")
 	private String description;
+	
+	@Column(name="prix_unitaire")
+	private float prix_unitaire;
 
 	@Column(name="couleur")
 	private String couleur;
 	
 	@OneToMany(mappedBy = "model")
+	@JsonIgnore
 	private Collection<Article> articles;
 	
 	@OneToMany(mappedBy = "model")
+	@JsonIgnore
 	private Collection<Photo> photos;
+	
 
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "model_categorie", joinColumns = @JoinColumn(name = "id_model"), inverseJoinColumns = @JoinColumn(name = "id_categorie"))
@@ -62,19 +67,31 @@ public class Model implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Model(String nom_model, String description, String couleur) {
+	
+
+	public Model(String nom_model, String description, float prix_unitaire, String couleur) {
 		super();
 		this.nom_model = nom_model;
 		this.description = description;
+		this.prix_unitaire = prix_unitaire;
 		this.couleur = couleur;
 	}
 
-	
-	public Model(String nom_model, Collection<Categorie> categories) {
+
+
+	public Model(String nom_model, String description, float prix_unitaire, String couleur,
+			Collection<Article> articles, Collection<Photo> photos, Collection<Categorie> categories) {
 		super();
 		this.nom_model = nom_model;
+		this.description = description;
+		this.prix_unitaire = prix_unitaire;
+		this.couleur = couleur;
+		this.articles = articles;
+		this.photos = photos;
 		this.categories = categories;
 	}
+
+
 
 	public long getId_model() {
 		return id_model;
@@ -110,22 +127,17 @@ public class Model implements Serializable{
 
 	
 
+	
+
+	
 	@Override
 	public String toString() {
 		return "Model [id_model=" + id_model + ", nom_model=" + nom_model + ", description=" + description
-				+ ", couleur=" + couleur  + ", categories="
-				+ categories + "]";
+				+ ", prix_unitaire=" + prix_unitaire + ", couleur=" + couleur + ", articles=" + articles + ", photos="
+				+ photos + ", categories=" + categories + "]";
 	}
 
-	
 
-	public Collection<Categorie> getCategories() {
-		return categories;
-	}
-
-	public void setCategories(Collection<Categorie> categories) {
-		this.categories = categories;
-	}
 
 	public Collection<Article> getArticles() {
 		return articles;
@@ -141,6 +153,26 @@ public class Model implements Serializable{
 
 	public void setPhotos(Collection<Photo> photos) {
 		this.photos = photos;
+	}
+
+	public Collection<Categorie> getCategories() {
+		return categories;
+	}
+
+	public void setCategories(Collection<Categorie> categories) {
+		this.categories = categories;
+	}
+
+
+
+	public float getPrix_unitaire() {
+		return prix_unitaire;
+	}
+
+
+
+	public void setPrix_unitaire(float prix_unitaire) {
+		this.prix_unitaire = prix_unitaire;
 	}
 
 	

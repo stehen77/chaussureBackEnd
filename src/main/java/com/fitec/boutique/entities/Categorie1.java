@@ -16,21 +16,18 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.Table;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
 
 @Entity
 @Table(name="categorie")
-@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })//very imp a verif
-public class Categorie11 implements Serializable {
+public class Categorie1 implements Serializable {
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@GeneratedValue(strategy=GenerationType.AUTO)
 	@Column(name="id_categorie")
 	private long id_categorie;
 
@@ -39,28 +36,28 @@ public class Categorie11 implements Serializable {
 	
 	
 
-	@ManyToMany(mappedBy = "categories", cascade = CascadeType.ALL)
-	@JsonIgnore
+	@ManyToMany(mappedBy = "categories")
 	private Collection<Model> models;
 	
 	
 	
-	public Categorie11() {
+	public Categorie1() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Categorie11(String nom_cat) {
+	public Categorie1(String nom_cat) {
 		super();
 		this.nom_cat = nom_cat;
 	}
 
-	public Categorie11(String nom_cat, Collection<Model> models) {
+	
+	public Categorie1(String nom_cat, Collection<Model> models) {
 		super();
 		this.nom_cat = nom_cat;
 		this.models = models;
 	}
-	
+
 	public long getId_categorie() {
 		return id_categorie;
 	}

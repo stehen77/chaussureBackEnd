@@ -5,6 +5,7 @@ import java.util.List;
 import javax.transaction.Transactional;
 
 import com.fitec.boutique.dao.IDAOModel;
+import com.fitec.boutique.entities.Categorie;
 import com.fitec.boutique.entities.Model;
 
 @Transactional
@@ -42,8 +43,21 @@ public class ModelServiceImpl implements IServiceModel{
 		
 	}
 
+	/*@Override
+	public List<Model> findAllModels() {
+		
+		List<Model> listeModl = daoModel.findAllModels();
+		for (Model mod : listeModl){
+			mod.getCategories().size(); //appeler .size() sur une collection "lazy" dans 
+			                          //une méthode @Transactional remonte tout de suite val en memoire
+			                         //--> pas de lazy exception coté web
+		}
+		return listeModl;
+	}*/
+	
 	@Override
 	public List<Model> findAllModels() {
+		
 		
 		return daoModel.findAllModels();
 	}

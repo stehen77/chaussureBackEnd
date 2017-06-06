@@ -32,8 +32,7 @@ public class Article implements Serializable {
 	@Column(name="taille")
 	private double taille;
 
-	@Column(name="prix_unitaire")
-	private float prix_unitaire;
+	
 
 	@Column(name="quantite_stock")
 	private int quantite_stock;
@@ -50,10 +49,10 @@ public class Article implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Article(double taille, float prix_unitaire, int quantite_stock) {
+	public Article(double taille, int quantite_stock) {
 		super();
 		this.taille = taille;
-		this.prix_unitaire = prix_unitaire;
+		
 		this.quantite_stock = quantite_stock;
 	}
 
@@ -77,14 +76,7 @@ public class Article implements Serializable {
 		this.taille = taille;
 	}
 
-	public float getPrix_unitaire() {
-		return prix_unitaire;
-	}
-
-	public void setPrix_unitaire(float prix_unitaire) {
-		this.prix_unitaire = prix_unitaire;
-	}
-
+	
 	public int getQuantite_stock() {
 		return quantite_stock;
 	}
@@ -102,17 +94,17 @@ public class Article implements Serializable {
 		this.model = model;
 	}
 
-	public Article(double taille, float prix_unitaire, int quantite_stock, Model model) {
+	public Article(double taille,  int quantite_stock, Model model) {
 		super();
 		this.taille = taille;
-		this.prix_unitaire = prix_unitaire;
+		
 		this.quantite_stock = quantite_stock;
 		this.model = model;
 	}
 
 	@Override
 	public String toString() {
-		return "Article [id_article=" + id_article + ", taille=" + taille + ", prix_unitaire=" + prix_unitaire
+		return "Article [id_article=" + id_article + ", taille=" + taille
 				+ ", quantite_stock=" + quantite_stock + ", model=" + model + "]";
 	}
 
