@@ -15,8 +15,8 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/chaussure"></property>
-		<property name="username" value="java1"></property>
-		<property name="password" value="java1"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value=""></property>
 	</bean>
 
 	<bean id="persistenceUnitManager"
@@ -40,9 +40,11 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:annotation-config></context:annotation-config>
-	<!-- <context:component-scan base-package="com.fitec.boutique" use-default-filters="false"> 
-		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" 
-		/> </context:component-scan> -->
+	<context:component-scan base-package="com.fitec.boutique"
+		use-default-filters="false">
+		<context:include-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
 
 
 
@@ -82,6 +84,12 @@
 		<property name="daoCommande" ref="daoCommande"></property>
 	</bean>
 
+	<bean id="daoPhoto" class="com.fitec.boutique.dao.PhotoDAOImpl"></bean>
+	<bean id="servicePhoto" class="com.fitec.boutique.service.PhotoServiceImpl">
+
+		<property name="daoPhoto" ref="daoPhoto"></property>
+	</bean>
+
 	<s:http>
 		<s:intercept-url pattern="/" access="ROLE_ADMIN"></s:intercept-url>
 		<s:form-login login-page="/login" default-target-url="/"
@@ -90,19 +98,16 @@
 	</s:http>
 	<s:authentication-manager>
 		<s:authentication-provider>
-			  <!-- <s:password-encoder hash="md5"></s:password-encoder> 
-			  <s:jdbc-user-service data-source-ref="datasource" 
-			  
-			  users-by-username-query="select nom_admin,mdp_admin, 
-				actived from admin where nom_admin=?"
-				
-				authorities-by-username-query="select a.nom_admin, r.nom_role from admin a, roles r
-                   where a.id_admin = r.admin_id and a.nom_admin =? " /> -->
-                
-			 <s:user-service>
+			<!-- <s:password-encoder hash="md5"></s:password-encoder> <s:jdbc-user-service 
+				data-source-ref="datasource" users-by-username-query="select nom_admin,mdp_admin, 
+				actived from admin where nom_admin=?" authorities-by-username-query="select 
+				a.nom_admin, r.nom_role from admin a, roles r where a.id_admin = r.admin_id 
+				and a.nom_admin =? " /> -->
+
+			<s:user-service>
 				<s:user name="admin" password="admin" authorities="ROLE_ADMIN" />
 
-			</s:user-service>  
+			</s:user-service>
 		</s:authentication-provider>
 	</s:authentication-manager>
 </beans>
