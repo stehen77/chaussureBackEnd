@@ -2,9 +2,15 @@
 <%@ page session="false"%>
 <html>
 <head>
+<meta charset="utf-8">
 <title>Chaussures de Sport</title>
+<%-- <link href="<c:url value="/bootstrap/css/bootstrap.min.css"/>" rel="stylesheet"> --%>
+<link href="http://netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"
+        rel="stylesheet"  type="text/css" />
+<!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> -->
 </head>
 <body>
+<a href=" <c:url value ="/j_spring_security_logout" />"> Logout</a>
 	<h1>Binvenu sur notre site</h1>
 
 	<P>Bienvenue chez TTT ! Avec plus de 720 marques et 40966 modèles,
@@ -16,7 +22,7 @@
 		talons hauts ou sacs à main de luxe, entre petits prix et maxi choix,
 		TTT vous promet une saison hautement stylée. Vous venez ?</P>
 		
-	<table class="tab1">
+	<table class="table table-striped">
 		<tr>
 			<th>ID</th>
 			<th>Taille</th>
