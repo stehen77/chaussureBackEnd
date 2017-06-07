@@ -10,8 +10,10 @@
 <!-- <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet"/> -->
 </head>
 <body>
-<a href=" <c:url value ="/j_spring_security_logout" />"> Logout</a>
+<%-- <a href=" <c:url value ="/j_spring_security_logout" />"> Logout</a> --%>
+<a href="<c:url value ="/j_spring_security_logout" />" class="btn btn-danger" role="button">Logout</a>
 	<h1>Binvenu sur notre site</h1>
+<img src="../../resources/img/chaussures.jpg" alt="..." class="img-thumbnail">
 
 	<P>Bienvenue chez TTT ! Avec plus de 720 marques et 40966 modèles,
 		vous trouverez forcément chaussure à votre pied ! Promenez-vous dans
