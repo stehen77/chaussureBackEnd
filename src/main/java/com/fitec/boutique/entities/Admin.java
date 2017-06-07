@@ -8,9 +8,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+
 
 //import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
@@ -32,6 +38,13 @@ public class Admin implements Serializable {
 
 	@Column(name="email_admin")
 	private String email_admin;
+	
+	@Column(name="mdp_admin")
+	private String mdp_admin;
+	
+	@OneToMany(mappedBy = "admin")
+	@JsonIgnore
+	private Collection<Role> roles;
 
 	/*
 	 * Constructeurs
@@ -82,6 +95,25 @@ public class Admin implements Serializable {
 
 	public void setEmail_admin(String email_admin) {
 		this.email_admin = email_admin;
+	}
+	
+	
+
+
+	public String getMdp_admin() {
+		return mdp_admin;
+	}
+
+	public void setMdp_admin(String mdp_admin) {
+		this.mdp_admin = mdp_admin;
+	}
+
+	public Collection<Role> getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Collection<Role> roles) {
+		this.roles = roles;
 	}
 
 	@Override

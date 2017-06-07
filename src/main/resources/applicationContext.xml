@@ -2,10 +2,8 @@
 ="1.0" encoding
 ="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:context="http://www.springframework.org/schema/context"
-	xmlns:tx="http://www.springframework.org/schema/tx"
-	xmlns:s="http://www.springframework.org/schema/security"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:s="http://www.springframework.org/schema/security"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
 		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
@@ -17,8 +15,8 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/chaussure"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+		<property name="username" value="java1"></property>
+		<property name="password" value="java1"></property>
 	</bean>
 
 	<bean id="persistenceUnitManager"
@@ -42,14 +40,11 @@
 	</bean>
 	<tx:annotation-driven transaction-manager="transactionManager" />
 	<context:annotation-config></context:annotation-config>
-	<!-- <context:component-scan base-package="com.fitec.boutique"
-		use-default-filters="false">
-		<context:include-filter type="annotation"
-			expression="org.springframework.stereotype.Controller" />
-			
-	</context:component-scan> -->
-	
-	
+	<!-- <context:component-scan base-package="com.fitec.boutique" use-default-filters="false"> 
+		<context:include-filter type="annotation" expression="org.springframework.stereotype.Controller" 
+		/> </context:component-scan> -->
+
+
 
 
 	<bean id="daoAdmin" class="com.fitec.boutique.dao.AdminDAOImpl"></bean>
@@ -80,25 +75,35 @@
 
 		<property name="daoCategorie" ref="daoCategorie"></property>
 	</bean>
-	
+
 	<bean id="daoCommande" class="com.fitec.boutique.dao.CommandeDAOImpl"></bean>
 	<bean id="serviceCommande" class="com.fitec.boutique.service.CommandeServiceImpl">
 
 		<property name="daoCommande" ref="daoCommande"></property>
 	</bean>
-	
-	
 
-	<!-- <s:http> <s:intercept-url pattern="/adminProd/**" access="ROLE_ADMIN_PROD" 
-		/> <s:intercept-url pattern="/adminCat/**" access="ROLE_ADMIN_CAT" /> <s:form-login 
-		login-page="/login" default-target-url="/adminProd/index" authentication-failure-url="/login" 
-		/> <s:logout logout-success-url="/login" /> </s:http> <s:authentication-manager> 
-		<s:authentication-provider> <s:password-encoder hash="md5"></s:password-encoder> 
-		<s:jdbc-user-service data-source-ref="datasource" users-by-username-query="select 
-		user_name,password, actived from users where user_name=?" authorities-by-username-query="select 
-		u.user_name, r.roleName from users u, role r where u.user_id = r.user_id 
-		and u.user_name =? " /> <s:user-service> <s:user name="admin1" password="admin1" 
-		authorities="ROLE_ADMIN_PROD" /> <s:user name="admin2" authorities="ROLE_ADMIN_CAT,ROLE_ADMIN_PROD" 
-		password="admin2" /> </s:user-service> </s:authentication-provider> </s:authentication-manager> -->
+	<s:http>
+		<s:intercept-url pattern="/" access="ROLE_ADMIN"></s:intercept-url>
+		<s:form-login login-page="/login" default-target-url="/"
+			authentication-failure-url="/login" />
+		<s:logout logout-success-url="/login" />
+	</s:http>
+	<s:authentication-manager>
+		<s:authentication-provider>
+			  <!-- <s:password-encoder hash="md5"></s:password-encoder> 
+			  <s:jdbc-user-service data-source-ref="datasource" 
+			  
+			  users-by-username-query="select nom_admin,mdp_admin, 
+				actived from admin where nom_admin=?"
+				
+				authorities-by-username-query="select a.nom_admin, r.nom_role from admin a, roles r
+                   where a.id_admin = r.admin_id and a.nom_admin =? " /> -->
+                
+			 <s:user-service>
+				<s:user name="admin" password="admin" authorities="ROLE_ADMIN" />
+
+			</s:user-service>  
+		</s:authentication-provider>
+	</s:authentication-manager>
 </beans>
 

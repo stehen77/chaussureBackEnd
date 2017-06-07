@@ -22,6 +22,7 @@ import com.fitec.boutique.service.IServiceModel;
  * Handles requests for the application home page.
  */
 @Controller
+//@RequestMapping(value="/acceuil")
 public class HomeController {
 	@Autowired
 	private IServiceArticle metierArticle;
@@ -60,17 +61,6 @@ public class HomeController {
 		return "home";
 	}
 	
-	/*@RequestMapping(value = "/index")
-	public String index(Model model) {
-
-		// creration de formulaire
-		model.addAttribute("article", new Article());
-		model.addAttribute("model", new com.fitec.boutique.entities.Model());
-		model.addAttribute("categorie", new com.fitec.boutique.entities.Categorie());
-		model.addAttribute("articles", metierArticle.findAllArticles());
-		model.addAttribute("models", metierModel.findAllModels());
-		model.addAttribute("categories", metierCategorie.findAllCategories());
-		return "home";
-	}*/
+	
 	
 }
