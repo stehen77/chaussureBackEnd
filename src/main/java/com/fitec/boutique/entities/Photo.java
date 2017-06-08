@@ -17,6 +17,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @Entity
@@ -37,6 +38,7 @@ public class Photo implements Serializable{
 	
 	@ManyToOne
 	@JoinColumn(name="id_model")
+	//@JsonIgnore
 	private Model model;
 
 	public Photo() {
