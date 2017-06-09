@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -20,6 +21,7 @@ import com.fitec.boutique.entities.Admin;
 import com.fitec.boutique.service.IServiceAdmin;
 
 @RestController
+@CrossOriginResourceSharing(allowAllOrigins = true)
 public class AdminController {
 
 	@Autowired
