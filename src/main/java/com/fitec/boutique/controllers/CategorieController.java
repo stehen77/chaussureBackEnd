@@ -2,6 +2,7 @@ package com.fitec.boutique.controllers;
 
 import java.util.List;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -17,6 +18,7 @@ import com.fitec.boutique.entities.Categorie;
 import com.fitec.boutique.service.IServiceCategorie;
 
 @RestController
+@CrossOriginResourceSharing(allowAllOrigins = true)
 public class CategorieController {
 
 	@Autowired

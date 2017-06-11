@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.List;
 
-
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -26,6 +26,7 @@ import com.fitec.boutique.service.IServiceModel;
 import com.fitec.boutique.service.IServicePhoto;
 
 @RestController
+@CrossOriginResourceSharing(allowAllOrigins = true)
 public class ModelController {
 
 	@Autowired

@@ -6,7 +6,7 @@
 	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:s="http://www.springframework.org/schema/security"
 	xmlns:mvc="http://www.springframework.org/schema/mvc"
 	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
-		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-4.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
 		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
 		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd">
@@ -15,8 +15,8 @@
 		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver"></property>
 		<property name="url" value="jdbc:mysql://localhost:3306/chaussure"></property>
-		<property name="username" value="root"></property>
-		<property name="password" value=""></property>
+		<property name="username" value="java1"></property>
+		<property name="password" value="java1"></property>
 	</bean>
 
 	<bean id="persistenceUnitManager"
@@ -95,6 +95,7 @@
 		<s:form-login login-page="/login" default-target-url="/"
 			authentication-failure-url="/login" />
 		<s:logout logout-success-url="/login" />
+		<!-- <s:csrf disabled="true" /> -->
 	</s:http>
 	<s:authentication-manager>
 		<s:authentication-provider>

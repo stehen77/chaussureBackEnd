@@ -2,6 +2,7 @@ package com.fitec.boutique.controllers;
 
 import java.util.List;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -18,6 +19,7 @@ import com.fitec.boutique.entities.Photo;
 import com.fitec.boutique.service.IServicePhoto;
 
 @RestController
+@CrossOriginResourceSharing(allowAllOrigins = true)
 public class PhotoController {
 
 	

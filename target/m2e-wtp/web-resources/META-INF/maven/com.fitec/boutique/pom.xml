@@ -237,7 +237,12 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>3.2.3.RELEASE</version>
 		</dependency>
-		
+
+		<dependency>
+			<groupId>org.apache.cxf</groupId>
+			<artifactId>cxf-rt-rs-security-cors</artifactId>
+			<version>3.1.11</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<plugins>

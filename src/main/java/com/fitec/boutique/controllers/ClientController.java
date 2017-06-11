@@ -2,6 +2,7 @@ package com.fitec.boutique.controllers;
 
 import java.util.List;
 
+import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,7 @@ import com.fitec.boutique.entities.Client;
 import com.fitec.boutique.service.IServiceClient;
 
 @RestController
+@CrossOriginResourceSharing(allowAllOrigins = true)
 public class ClientController {
 
 	
