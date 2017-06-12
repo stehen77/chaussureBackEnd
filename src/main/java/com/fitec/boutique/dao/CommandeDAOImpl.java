@@ -7,6 +7,7 @@ import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 
 import com.fitec.boutique.entities.Commande;
+import com.fitec.boutique.entities.Ligne_de_commande;
 
 public class CommandeDAOImpl implements IDAOCommande {
 
@@ -26,6 +27,11 @@ public class CommandeDAOImpl implements IDAOCommande {
 		if (commande != null) {
 			try {
 				em.persist(commande);
+				List<Ligne_de_commande> panier = (List<Ligne_de_commande>) commande.getLigne_de_commandes();
+				for (Ligne_de_commande ligne_de_commande : panier) {
+					ligne_de_commande.setCommande(commande);
+					em.merge(ligne_de_commande);
+				}
 			} catch (Exception e) {
 
 			}
@@ -67,6 +73,12 @@ public class CommandeDAOImpl implements IDAOCommande {
 	@Override
 	public boolean isCommandeExist(Commande commande) {
 		return findById(commande.getId_commande()) != null;
+	}
+
+
+	@Override
+	public void saveLigneCommande(Ligne_de_commande ligneCommande) {
+		em.persist(ligneCommande);
 	}
 	
 	/*@Override

@@ -42,8 +42,7 @@ public class Article implements Serializable {
 	//@JsonIgnore
 	private Model model;
 	
-	@OneToMany
-	@JoinColumn(name="id_ligne_cmde")
+	@OneToMany(mappedBy="article")
 	@JsonIgnore
 	private Collection<Ligne_de_commande> ligne_de_commandes;
 

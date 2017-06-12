@@ -2,8 +2,8 @@ package com.fitec.boutique.dao;
 
 import java.util.List;
 
-
 import com.fitec.boutique.entities.Commande;
+import com.fitec.boutique.entities.Ligne_de_commande;
 
 public interface IDAOCommande {
 
@@ -13,6 +13,7 @@ public interface IDAOCommande {
 	
 
 	public void saveCommande(Commande commande);
+	public void saveLigneCommande(Ligne_de_commande ligneCommande);
 
 	public void updateCommande(Commande commande);
 

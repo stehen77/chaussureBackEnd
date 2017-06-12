@@ -43,8 +43,13 @@ public class Commande implements Serializable{
 	//@JsonIgnore
 	private Client client;
 	
-	@OneToMany
-	@JoinColumn(name="id_ligne_cmde")
+	@Column(name="id_client", insertable=false,updatable=false)
+	//@Transient
+	private Long idClient; //+get/set
+	
+	
+	
+	@OneToMany(mappedBy="commande")
 	//@JsonIgnore
 	private Collection<Ligne_de_commande> ligne_de_commandes;
 
@@ -95,6 +100,15 @@ public class Commande implements Serializable{
 
 	public void setClient(Client client) {
 		this.client = client;
+	}
+	
+	// idClient
+	public long getIdClient() {
+		return idClient;
+	}
+
+	public void setIdClient(long idclient) {
+		this.idClient = idclient;
 	}
 
 	public Collection<Ligne_de_commande> getLigne_de_commandes() {
