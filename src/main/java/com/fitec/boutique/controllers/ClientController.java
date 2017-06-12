@@ -2,6 +2,11 @@ package com.fitec.boutique.controllers;
 
 import java.util.List;
 
+import javax.ws.rs.FormParam;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.core.Response;
+
 import org.apache.cxf.rs.security.cors.CrossOriginResourceSharing;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
@@ -30,7 +35,7 @@ public class ClientController {
 
 	 //* Ajouter un Client
 	 
-	/*@RequestMapping(value = "/client/new", method = RequestMethod.POST)
+	@RequestMapping(value = "/client/new", method = RequestMethod.POST)
 	public ResponseEntity<Void> addClient(@RequestBody Client client, UriComponentsBuilder ucb) {
 		if (serviceClient.isClientExist(client)) {
 			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
@@ -39,15 +44,16 @@ public class ClientController {
 			serviceClient.saveClient(client);
 			HttpHeaders headers = new HttpHeaders();
 			headers.setLocation(ucb.path("/client/{id}").buildAndExpand(client.getId_client()).toUri());
+			
 			return new ResponseEntity<Void>(HttpStatus.CREATED);
 		}
 	}
-*/
-	@RequestMapping(value="/client/new",method=RequestMethod.POST)
+
+	/*@RequestMapping(value="/client/new",method=RequestMethod.POST)
 	public void saveClients(@RequestBody Client client){
 		
 		 serviceClient.saveClient(client);
-	}
+	}*/
 	
 	/// * selectionner un Client par Id
 	 
@@ -72,27 +78,7 @@ public class ClientController {
 		return new ResponseEntity<List<Client>>(clients, HttpStatus.OK);
 	}
 	
-	// * Mettre à jour un client
-	 
-		/*@RequestMapping(value = "/client/{id}", method = RequestMethod.PUT)
-		public ResponseEntity<Client> updateClient(@PathVariable("id") int id, @RequestBody Client clnt) {
-
-			Client client = serviceClient.findById(id);
-
-			if (client == null) {
-				return new ResponseEntity<Client>(HttpStatus.NOT_FOUND);
-			}
-
-			clnt.setNom(clnt.getNom());
-			clnt.setPrenom(clnt.getPrenom());
-			clnt.setEmail(clnt.getEmail());
-			clnt.setAdresse(clnt.getAdresse());
-			clnt.setMdp(clnt.getMdp());
-
-			serviceClient.updateClient(client);
-			return new ResponseEntity<Client>(client, HttpStatus.OK);
-		}*/
-
+	
 		@RequestMapping(value="client/{id}",method=RequestMethod.PUT)
 		public void updateClients(@PathVariable(value="id")long id,@RequestBody Client client){
 			client.setId_client(id);	
@@ -112,4 +98,19 @@ public class ClientController {
 			serviceClient.deleteClientById(id);
 			return new ResponseEntity<Client>(HttpStatus.NO_CONTENT);
 		}
+		
+	
+		
+		@RequestMapping(value = "/clients/login/{email}/{mdp}", method = RequestMethod.GET)
+		public ResponseEntity<List<Client>> authenticateUser(@PathVariable("email") String email, @PathVariable("mdp") String mdp
+				                                     ) {
+			
+			List<Client> clients = serviceClient.findAllClients();
+			if (clients.isEmpty()) {
+				return new ResponseEntity<List<Client>>(HttpStatus.NO_CONTENT);
+			}
+			return new ResponseEntity<List<Client>>(clients, HttpStatus.OK);
+		}
+		
+		
 }
