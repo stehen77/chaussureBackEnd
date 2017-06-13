@@ -38,9 +38,9 @@ public class ClientDAOImpl implements IDAOClient{
 	}
 
 	@Override
-	public void saveClient(Client client) {
+	public Client saveClient(Client client) {
 		em.persist(client);
-		
+		return client;
 	}
 
 	@Override

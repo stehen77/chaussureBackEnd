@@ -35,8 +35,8 @@ public class ClientServiceImpl implements IServiceClient{
 	}
 
 	@Override
-	public void saveClient(Client client) {
-		daoClient.saveClient(client);
+	public Client saveClient(Client client) {
+		return daoClient.saveClient(client);
 		
 	}
 

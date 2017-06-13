@@ -11,7 +11,7 @@ public interface IServiceClient {
 
 	public Client findByName(String name);
 
-	public void saveClient(Client client);
+	public Client saveClient(Client client);
 
 	public void updateClient(Client client);
 

@@ -8,6 +8,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -22,7 +23,7 @@ import com.fitec.boutique.entities.Commande;
 import com.fitec.boutique.service.IServiceCommande;
 
 @RestController
-@CrossOriginResourceSharing(allowAllOrigins = true)
+@CrossOrigin(origins = {"*"})
 public class CommandeController {
 
 	@Autowired
@@ -56,17 +57,9 @@ public class CommandeController {
 	
 	// Ajout d'une commande et des lignes de commandes associées
 	////////////////////////////////////////////////////////////
-	@RequestMapping(value = "/commande/new", method = RequestMethod.POST)
-	public ResponseEntity<Void> addCommande(@RequestBody Commande commande, UriComponentsBuilder ucb) {
-		if (serviceCommande.isCommandeExist(commande)) {
-			return new ResponseEntity<Void>(HttpStatus.CONFLICT);
-		} else {
-
-			serviceCommande.saveCommande(commande);
-			HttpHeaders headers = new HttpHeaders();
-			headers.setLocation(ucb.path("/admin/{id}").buildAndExpand(commande.getId_commande()).toUri());
-			return new ResponseEntity<Void>(HttpStatus.CREATED);
-		}
+	@RequestMapping(value = "/newcommande", method = RequestMethod.POST)
+	public void addCommande() {
+		System.out.println("REWUESR WEBSERVICE OK");
 	}
 	
 	
